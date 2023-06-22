@@ -13,13 +13,14 @@ Answer: 3 apples.
 """
 
 class SimpleArithmeticWP(Template):
-    def generate(self, *args):
+    def generate(self, simple_addition=5, simple_subtraction=5, multi_num=5):
+
         results = []
-        for _ in range(5):
+        for _ in range(simple_addition):
             results.append(self.simple_two_num(kind="addition"))
-        for _ in range(5):
+        for _ in range(simple_subtraction):
             results.append(self.simple_two_num(kind="subtraction"))
-        for _ in range(5):
+        for _ in range(multi_num):
             results.append(self.multi_num())
         return results
 

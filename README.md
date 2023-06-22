@@ -18,6 +18,7 @@ The two names files, `boy_names.txt` and `girl_names.txt`, were created by takin
 - Incorrect responses with corrections
 - Sequences
 - Large arithmetic with steps shown
+- GCD, LCM
 
 ### Other
 
