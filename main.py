@@ -24,5 +24,8 @@ def save_generations(generations, subfolder=None):
 
 
 if __name__ == "__main__":
-    x = SimpleArithmeticWP().generate()
-    save_generations(x, )
+    # x = SimpleArithmeticWP().generate()
+    # save_generations(x, )
+    from templates.utils import sample_from
+    print(sample_from("qa_prefixes")[0])
+
