@@ -1,4 +1,4 @@
-from .utils import Template, sample_from
+from .utils import Template, sample_from, sample_small_int
 import random
 
 """
@@ -19,23 +19,37 @@ class SimpleArithmeticWP(Template):
         return results
 
     def addition(self):
-        num1 = random.randrange(1, 100_000)
-        num2 = random.randrange(1, 100_000)
+        num1 = sample_small_int()
+        num2 = sample_small_int()
         is_boy = random.random() < .5
         if is_boy:
             name = sample_from("boy_names")
         else:
             name = sample_from("girl_names")
-        singular, plural = sample_from("noun_pairs").split(",")
+        singular, plural = sample_from("noun_pairs")
         if num1 == 1:
             noun = singular
         else:
             noun = plural
         
         cap_pronoun, pronoun = ("He", "he") if is_boy else ("She", "she")
-        q_prefix, a_prefix = ("Q:", "A:") if random.random() < .5 else ("Question:", "Answer:")
+        q_prefix, a_prefix = sample_from("qa_prefixes")
 
-        add = f"""{q_prefix} {name} had {num1} {noun}. {cap_pronoun} gained {num2} more. How many does {pronoun} have now?
-{a_prefix} {cap_pronoun} now has {num1 + num2} {plural}."""
+        add_verb = sample_from("add_verbs")
+
+        repeat_noun = "" if random.random() < .5 else " " + plural
+        say_now = "" if random.random() < .5 else " now"
+        last_word = plural if random.random() < .5 else "of them"
+
+        answer = num1 + num2
+
+        add = f"""{q_prefix}{name} had {num1} {noun}. {cap_pronoun} {add_verb} {num2} more. How many{repeat_noun} does {pronoun} have now?
+{a_prefix}{cap_pronoun}{say_now} has {answer} {last_word}."""
         
-        return add
+        metadata = {
+            'len': len(add),
+            'answer_start_char': add.find(str(answer)),
+            'answer_len': len(str(answer))
+        }
+
+        return add, metadata

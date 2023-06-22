@@ -3,15 +3,16 @@ import os
 import random
 import csv
 import json
-
+from typing import Tuple
 
 class Template(ABC):
-
     @abstractmethod
-    def generate(self, *args):
+    def generate(self, *args) -> Tuple[str, dict]:
         pass
 
 # the args are the names of the file(s) inside the variables folder, minus the .csv
+# Reads CSV cells as though they were JSON
+# If a row has only one element, it is not a list
 def sample_from(*args):
     all_rows = []
     for arg in args:
@@ -21,26 +22,19 @@ def sample_from(*args):
             rows = f.read().rstrip().split("\n")
             row = random.choice(rows).split(",")
             row = [json.loads(x) for x in row]
+            if len(row) == 1:
+                row = row[0]
             all_rows.append(row)
     return random.choice(all_rows)
 
-# uniformly random
-# returns question prefix, answer prefix
-def sample_qa_prefixes():
-    options = [
-        # Simple Question / Answer
-        ("Q: ", "A: "),
-        ("Question: ", "Answer: "),
-        ("Question\n", "Answer\n"),
-        ("Question\n\n", "Answer\n\n"),
-        ("**Question**: ", "**Answer**: "),
-        ("**Q**: ", "**A**: "),
-        ("**Q:** ", "**A:** "),
-        ("\n\n\"\"\"QUESTION\"\"\"\n\n", "\n\"\"\"ANSWER\"\"\"\n\n"),
-        # Command style
-        ("Please respond to the following question.\n\n", "---\n\nAnswer:"),
-        ("Answer the following:\n\n", "\nResponse:"),
-        ("The following is a question from a user. Please respond clearly and succinctly.", "Your response: ")
-    ]
-    return random.choice(options)
-    
+def _power_law(x_min=1, a=1.2):
+    # used chatGPT to find the inverse CDF for a power law distribution
+    y = random.random()
+    return ((1 - y) ** (1/(1 - a))) * x_min
+
+def sample_small_int(dist="power", dist_args={}):
+    if dist == "power":
+        x = _power_law(**dist_args)
+        return int(x)
+    else:
+        raise NotImplementedError(f"Unknown distribution value \"{dist}\"")
