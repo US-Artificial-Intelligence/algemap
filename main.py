@@ -40,4 +40,4 @@ if __name__ == "__main__":
     # x = SimpleArithmeticWP().generate(multi_num=10)
     # x = Sequence().generate()
     x = Factorization().generate()
-    # save_generations(x, subfolder="testing")
+    save_generations(x, subfolder="testing")

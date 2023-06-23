@@ -14,10 +14,15 @@ The two names files, `boy_names.txt` and `girl_names.txt`, were created by takin
 
 ### Data types
 
-- Simple arithmetic word problems with each operation
+### TODO
+
 - Incorrect responses with corrections
-- Sequences
 - Large arithmetic with steps shown
+
+### Finished
+
+- Simple arithmetic word problems (+ and -)
+- Sequences
 - GCD, LCM
 
 ### Other
