@@ -1,6 +1,7 @@
 from templates.simple_arithmetic_wp import SimpleArithmeticWP
 from templates.sequences import Sequence
 from templates.factorization import Factorization
+from templates.step_by_step_arithmetic import StepByStepArithmetic
 import os
 import shutil
 from templates.utils import sample_small_int
@@ -39,5 +40,6 @@ def save_generations(generations, subfolder=None, metadata_filename="metadata.js
 if __name__ == "__main__":
     # x = SimpleArithmeticWP().generate(multi_num=10)
     # x = Sequence().generate()
-    x = Factorization().generate()
+    # x = Factorization().generate()
+    x = StepByStepArithmetic().generate()
     save_generations(x, subfolder="testing")

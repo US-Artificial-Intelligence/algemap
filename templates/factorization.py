@@ -12,8 +12,7 @@ class Factorization(Template):
         lcm_gens = [self.lcm_generation() for _ in range(n_lcm)]
         gcd_gens = [self.gcd_generation() for _ in range(n_gcd)]
 
-        return [(x, y) for x, y in lcm_gens] + [(x, y) for x, y in gcd_gens]
-
+        return lcm_gens + gcd_gens
 
     def get_metadata(self, txt, kind, tokens):
         metadata = {
