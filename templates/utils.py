@@ -5,6 +5,8 @@ import csv
 import json
 from typing import Tuple, List
 import shlex
+import math
+
 
 class Template(ABC):
     @abstractmethod
@@ -35,9 +37,17 @@ def _power_law(x_min=1, a=1.2):
     y = random.random()
     return ((1 - y) ** (1/(1 - a))) * x_min
 
+def _exponential(c=.75):
+    y = random.random()
+    x = -1 * math.log(1 - y) / c
+    return x
+
 def sample_small_int(dist="power", dist_args={}):
     if dist == "power":
         x = _power_law(**dist_args)
+        return int(x)
+    elif dist == "exponential":
+        x = _exponential(**dist_args)
         return int(x)
     else:
         raise NotImplementedError(f"Unknown distribution value \"{dist}\"")
