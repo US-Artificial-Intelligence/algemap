@@ -4,7 +4,7 @@ Algemap (**Al**gorithmically **ge**nerated **ma**th **p**roblems) is a dataset o
 
 ## Variables
 
-The variables folder contains substitutable words or phrases to insert into problem templates. The files are CSVs, but each cell is read in as if it were JSON.
+The variables folder contains substitutable words or phrases to insert into problem templates. The files are txts such that in each row, there are any number of quoted strings. The strings on each row are separated by spaces (split using POSIX rules) and then parsed using JSON.
 
 ### Names
 

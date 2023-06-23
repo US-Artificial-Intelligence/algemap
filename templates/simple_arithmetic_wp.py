@@ -71,7 +71,8 @@ class SimpleArithmeticWP(Template):
             'tokenizer': "cl100k_base",
             'tokens_len': len(tokens),
             "word_problem_type": kind,
-            "shows_work": False
+            "shows_work": False,
+            'data_type': 'simple_arithmetic_wp'
         }
 
         return add, metadata
@@ -147,7 +148,8 @@ class SimpleArithmeticWP(Template):
             'tokenizer': "cl100k_base",
             'tokens_len': len(tokens),
             "word_problem_type": 'mixed',
-            "shows_work": False
+            "shows_work": False,
+            'data_type': 'simple_arithmetic_wp'
         }
 
         return txt, metadata

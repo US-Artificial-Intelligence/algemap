@@ -3,12 +3,14 @@ import os
 import random
 import csv
 import json
-from typing import Tuple
+from typing import Tuple, List
+import shlex
 
 class Template(ABC):
     @abstractmethod
-    def generate(self, *args) -> Tuple[str, dict]:
+    def generate(self, *args) -> List[Tuple[str, dict]]:
         pass
+
 
 # the args are the names of the file(s) inside the variables folder, minus the .csv
 # Reads CSV cells as though they were JSON
@@ -20,8 +22,9 @@ def sample_from(*args):
         path = os.path.join("variables", arg)
         with open(path, 'r') as f:
             rows = f.read().rstrip().split("\n")
-            row = random.choice(rows).split(",")
-            row = [json.loads(x) for x in row]
+            row = random.choice(rows)
+            row = shlex.split(row, posix=True)
+            row = [json.loads("\"" + x.replace("\"", "\\\"") + "\"") for x in row]
             if len(row) == 1:
                 row = row[0]
             all_rows.append(row)
