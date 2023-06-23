@@ -36,6 +36,6 @@ def save_generations(generations, subfolder=None, metadata_filename="metadata.js
 
 
 if __name__ == "__main__":
-    x = SimpleArithmeticWP().generate(multi_num=10)
-    # x = Sequence().generate()
+    # x = SimpleArithmeticWP().generate(multi_num=10)
+    x = Sequence().generate()
     save_generations(x, subfolder="testing")

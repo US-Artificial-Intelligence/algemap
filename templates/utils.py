@@ -18,7 +18,7 @@ class Template(ABC):
 def sample_from(*args):
     all_rows = []
     for arg in args:
-        arg = arg + ".csv"
+        arg = arg + ".txt"
         path = os.path.join("variables", arg)
         with open(path, 'r') as f:
             rows = f.read().rstrip().split("\n")
