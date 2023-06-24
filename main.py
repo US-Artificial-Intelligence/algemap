@@ -2,6 +2,7 @@ from templates.simple_arithmetic_wp import SimpleArithmeticWP
 from templates.sequences import Sequence
 from templates.factorization import Factorization
 from templates.step_by_step_arithmetic import StepByStepArithmetic
+from templates.boolean import Boolean
 import os
 import shutil
 from templates.utils import sample_small_int
@@ -41,5 +42,5 @@ if __name__ == "__main__":
     # x = SimpleArithmeticWP().generate(multi_num=10)
     # x = Sequence().generate()
     # x = Factorization().generate()
-    x = StepByStepArithmetic().generate()
+    x = Boolean().generate()
     save_generations(x, subfolder="testing")

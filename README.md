@@ -16,14 +16,14 @@ The two names files, `boy_names.txt` and `girl_names.txt`, were created by takin
 
 ### TODO
 
-- Incorrect responses with corrections
-- Large arithmetic with steps shown
+- Deductive reasoning
 
 ### Finished
 
 - Simple arithmetic word problems (+ and -)
 - Sequences
 - GCD, LCM
+- Large arithmetic with steps shown
 
 ### Other
 

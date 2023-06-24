@@ -1,9 +1,37 @@
-from .utils import Template, sample_from, sample_small_int
-import random
+from .utils import Template, sample_small_int
 import tiktoken
 from typing import Tuple, List
-import math
 from functools import reduce
+
+"""
+
+Step by Step Arithmetic, of the form:
+
+11 + 105
+
+
+ 0000
+  011
+  105
++ ---
+ 0006
+
+
+ 0000
+  011
+  105
++ ---
+ 0016
+
+
+ 0000
+  011
+  105
++ ---
+ 0116
+
+
+"""
 
 
 class StepByStepArithmetic(Template):
