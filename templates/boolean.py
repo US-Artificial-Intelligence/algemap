@@ -20,9 +20,29 @@ def remove_duplicates(data, func):
 
 class Boolean(Template):
 
-    def generate(self, *args) -> List[Tuple[str, dict]]:
-        x = self.gen_tree()
-        return [(self.traverse(x), {})]
+    def generate(self, n=10, prefix="") -> List[Tuple[str, dict]]:
+        
+        gens = []
+        for _ in range(n):
+            x = self.gen_tree()
+            res = self.traverse(x)
+            res = prefix + res
+
+            encoding = tiktoken.get_encoding("cl100k_base")
+            tokens = encoding.encode(res)
+            gens.append((res, self.get_metadata(res, tokens)))
+
+        return gens
+
+    def get_metadata(self, txt, tokens):
+        metadata = {
+            'char_len': len(txt),
+            'tokens': tokens,
+            'tokenizer': "cl100k_base",
+            'tokens_len': len(tokens),
+            'data_type': 'boolean'
+        }
+        return metadata
 
     # Give next move probabilities proportional to the inverse square root of the length of the move
     # (shifted so the min length move has probability weight 1)
