@@ -19,6 +19,25 @@ pip install -r requirements.txt
 python3 main.py
 ```
 
+## Metadata and Features
+
+Different data types have different feature values. For the hugging face data, every row has at least the following features:
+
+- txt, the plain text
+- tokens, the tokenized text
+- tokens_len, the number of tokens
+- data_type, which kind of data is it (step_by_step_arithmetic, boolean, arithmetic_sequence, factorization, simple_arithmetic_wp)
+- tokenizer, which for now is always "cl100k_base"
+- char_len, the length of the data in characters
+
+Data-type-specific features include:
+
+- simple_arithmetic_wp: answer_start_char, answer_char_len, word_problem_type: ("addition" or "subtraction")
+- arithmetic_sequence: rule, which is a string representing the formula for the sequence
+- factorization: kind, which can be GCD or LCM
+- step_by_step_arithmetic: kind, which can be "addition" or "subtraction"
+
+
 ## Variables
 
 The variables folder contains substitutable words or phrases to insert into problem templates. The files are txts such that in each row, there are any number of quoted strings. The strings on each row are separated by spaces (split using POSIX rules) and then parsed using JSON.
